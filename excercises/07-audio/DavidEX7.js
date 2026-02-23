@@ -1,28 +1,52 @@
-//  Sound on Hover
-const button = document.getElementById("hover.mp3");
-const sound = document.getElementById("music.mp3");
 
-button.addEventListener("mouseenter", () => {
-  sound.currentTime = 0; // restarts the sound if hovered repeatedly
-  sound.play();
+// Problem 1: Sound on Hover
+
+// Create Audio object (sound_1)
+const hoverSound = new Audio('sounds/sound_1.mp3');
+
+// Select elements
+const hoverBtn = document.querySelector('#hover-btn');
+const hoverStatus = document.querySelector('#hover-status');
+
+// Add mouseenter event
+hoverBtn.addEventListener('mouseenter', () => {
+  hoverSound.currentTime = 0; // restart if hovering repeatedly
+  hoverSound.play();
+
+  hoverStatus.textContent = 'Hover detected! 🎯 Playing sound_1...';
 });
 
 
 
-// Volume Control
-const audio = document.getElementById("audioPlayer");
-const slider = document.getElementById("volumeSlider");
-const percent = document.getElementById("volumePercent");
+// Problem 2: Volume Control
 
-// Initialize audio volume
-audio.volume = slider.value / 100;
+// Create Audio object (sound_2)
+const volumeAudio = new Audio('sounds/sound_2.mp3');
 
-slider.addEventListener("input", () => {
-  // Convert slider value (0-100) to volume (0-1)
-  const volume = slider.value / 100;
-  audio.volume = volume;
+// Select elements
+const volumePlayBtn = document.querySelector('#volume-play-btn');
+const volumeSlider = document.querySelector('#volume-slider');
+const volumeDisplay = document.querySelector('#volume-display');
+const volumeStatus = document.querySelector('#volume-status');
 
-  // Update UI
-  percent.textContent = `${slider.value}%`;
+// Set initial volume from slider (50%)
+volumeAudio.volume = volumeSlider.value / 100;
+
+// Play button event
+volumePlayBtn.addEventListener('click', () => {
+  volumeAudio.currentTime = 0;
+  volumeAudio.play();
+
+  volumeStatus.textContent = `Playing sound_2 at ${volumeSlider.value}% volume 🔊`;
+});
+
+// Real-time volume control
+volumeSlider.addEventListener('input', () => {
+  const volumeValue = volumeSlider.value;
+
+  // Convert 0–100 → 0–1
+  volumeAudio.volume = volumeValue / 100;
+
+  volumeDisplay.textContent = `Volume: ${volumeValue}%`;
 });
 
