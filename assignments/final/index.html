@@ -3,9 +3,140 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IDM231</title>
+    <meta name="description" content="Discover which Balatro joker matches your zodiac sign in this retro cosmic casino experience">
+    <title>Which Balatro Joker Are You? | Cosmic Zodiac Casino</title>
+    
+    <!-- CSS Reset -->
+    <link rel="stylesheet" href="reset.css">
+    
+    <!-- Main Styles -->
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>idm231</h1>
+    <!-- Animated Background Stars -->
+    <div class="stars"></div>
+    
+    <!-- Sound Toggle Button -->
+    <button id="soundToggle" class="sound-toggle" aria-label="Toggle sound">🔊</button>
+    
+    <!-- Help Button -->
+    <button id="helpBtn" class="help-btn" aria-label="Open help">HELP</button>
+    
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1 class="title">WHICH BALATRO JOKER ARE YOU?</h1>
+            <p class="subtitle">DISCOVER YOUR COSMIC JOKER MATCH</p>
+            <p style="font-size: 1.2rem; color: var(--accent-gold);">🎰 A RETRO ZODIAC EXPERIENCE 🎰</p>
+        </header>
+        
+        <!-- Main Content Grid -->
+        <main class="main-content">
+            <!-- Form Section -->
+            <section class="form-section" aria-labelledby="form-title">
+                <h2 id="form-title" class="form-title">ENTER YOUR INFO</h2>
+                
+                <form id="zodiacForm" novalidate>
+                    <div class="form-group">
+                        <label for="name" class="form-label">YOUR NAME:</label>
+                        <input 
+                            type="text" 
+                            id="name" 
+                            name="name" 
+                            class="form-input" 
+                            placeholder="Enter your name"
+                            autocomplete="given-name"
+                            aria-required="true"
+                            aria-describedby="nameError"
+                        >
+                        <div id="nameError" class="error-message" role="alert"></div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="birthdate" class="form-label">BIRTH DATE:</label>
+                        <input 
+                            type="date" 
+                            id="birthdate" 
+                            name="birthdate" 
+                            class="form-input"
+                            aria-required="true"
+                            aria-describedby="dateError"
+                        >
+                        <div id="dateError" class="error-message" role="alert"></div>
+                    </div>
+                    
+                    <div class="button-group">
+                        <button type="submit" class="btn">REVEAL</button>
+                        <button type="button" id="clearBtn" class="btn btn-secondary">CLEAR</button>
+                    </div>
+                    
+                    <div class="loading" role="status" aria-live="polite">
+                        🎰 Calculating your cosmic joker... 🎰
+                    </div>
+                </form>
+            </section>
+            
+            <!-- Symbols Section -->
+            <section class="symbols-section" aria-labelledby="symbols-title">
+                <h2 id="symbols-title" class="symbols-title">OR CLICK A SIGN</h2>
+                <div class="symbols-grid" role="group" aria-label="Zodiac signs"></div>
+            </section>
+            
+            <!-- Result Section -->
+            <section class="result-section" role="region" aria-live="polite" aria-label="Your zodiac result">
+                <!-- Result will be here -->
+            </section>
+        </main>
+    </div>
+    
+    <!-- Help Modal -->
+    <div id="helpModal" class="modal" role="dialog" aria-labelledby="modal-title" aria-modal="true">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modal-title" class="modal-title">HOW TO PLAY</h2>
+                <button id="closeModal" class="close-btn" aria-label="Close help">✕</button>
+            </div>
+            <div class="modal-body">
+                <h3>🎰 Welcome to the Cosmic Casino!</h3>
+                <p>This app combines the Western zodiac system with Balatro jokers to reveal your cosmic gaming identity.</p>
+                
+                <h3>📝 Two Ways to Play:</h3>
+                <ul>
+                    <li><strong>Method 1 - Form Entry:</strong> Enter your name and birth date, then click "REVEAL" to discover your cosmic joker based on your zodiac sign.</li>
+                    <li><strong>Method 2 - Click Symbols:</strong> Click any of the 12 zodiac symbols to instantly view that sign's joker and characteristics.</li>
+                </ul>
+                
+                <h3>🎵 Features:</h3>
+                <ul>
+                    <li><strong>Unique Sounds:</strong> Each zodiac sign plays its own unique sound effect. Toggle sound on/off with the speaker button (top left).</li>
+                    <li><strong>Personalized Results:</strong> When using the form, your result includes your name and formatted birth date.</li>
+                    <li><strong>Persistent Storage:</strong> Your name and birth date are saved locally. Click "CLEAR" to reset.</li>
+                    <li><strong>Keyboard Accessible:</strong> Tab through elements, press Enter to select, and Escape to close this modal.</li>
+                </ul>
+                
+                <h3>♈ The 12 Cosmic Jokers:</h3>
+                <ul>
+                    <li>Aries (Mar 21 - Apr 19) → THE JOKER</li>
+                    <li>Taurus (Apr 20 - May 20) → BULL</li>
+                    <li>Gemini (May 21 - Jun 20) → DUSK</li>
+                    <li>Cancer (Jun 21 - Jul 22) → LOYALTY CARD</li>
+                    <li>Leo (Jul 23 - Aug 22) → BARON</li>
+                    <li>Virgo (Aug 23 - Sep 22) → EVEN STEVEN</li>
+                    <li>Libra (Sep 23 - Oct 22) → EQUILIBRIUM</li>
+                    <li>Scorpio (Oct 23 - Nov 21) → VAMPIRE</li>
+                    <li>Sagittarius (Nov 22 - Dec 21) → SHOOT THE MOON</li>
+                    <li>Capricorn (Dec 22 - Jan 19) → BLUEPRINT</li>
+                    <li>Aquarius (Jan 20 - Feb 18) → BRAINSTORM</li>
+                    <li>Pisces (Feb 19 - Mar 20) → SEEING DOUBLE</li>
+                </ul>
+                
+                <p style="margin-top: 20px; color: var(--accent-gold);">🎲 Good luck at the cosmic casino! May your joker bring you fortune! 🎲</p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- JavaScript -->
+    <script src="script.js"></script>
 </body>
 </html>
