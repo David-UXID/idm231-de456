@@ -408,10 +408,26 @@ function showError(elementId, message) {
 
 // Calculate zodiac sign from birth date
 function calculateZodiacSign(birthdate) {
-    const date = new Date(birthdate);
-    const month = date.getMonth() + 1; // JavaScript months are 0-indexed
-    const day = date.getDate();
-    
+    // Birthdate comes from an <input type="date"> which returns YYYY-MM-DD.
+    // Parsing via Date() can shift the day depending on timezone (e.g. UTC vs local).
+    // We only care about month/day, so parse explicitly to avoid off-by-one issues.
+    let month;
+    let day;
+
+    if (typeof birthdate === 'string') {
+        const parts = birthdate.split('-');
+        if (parts.length >= 3) {
+            month = Number(parts[1]);
+            day = Number(parts[2]);
+        }
+    }
+
+    if (!month || !day) {
+        const date = new Date(birthdate);
+        month = date.getMonth() + 1;
+        day = date.getDate();
+    }
+
     // Check each zodiac sign
     for (const [key, sign] of Object.entries(zodiacData)) {
         // Handle signs that span across year boundary (like Capricorn)
@@ -436,7 +452,7 @@ function calculateZodiacSign(birthdate) {
             }
         }
     }
-    
+
     return 'aries'; // Fallback
 }
 
